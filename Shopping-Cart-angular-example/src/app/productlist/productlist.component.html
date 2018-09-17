@@ -1,0 +1,52 @@
+
+
+<div class="row">
+    <div class="col-md-8">
+     <h3>Products</h3>
+     <div id="products-list" class="products-list">
+        <table class="table">
+        
+            <tbody>
+                <tr *ngFor="let list of products">
+                 
+                  <td><img src="{{list.product_img}}" class="img-thumbnail" style="height:100px;" />
+                  {{list.product_name}}
+                  {{list.product_price}}</td>
+                  <td>
+                      
+                       <button  *ngIf="list.added"  (click)="RemoveProduct(list.product_id)" class="btn btn-primary">Remove
+                      </button>
+                      <button  *ngIf="! list.added"  (click)="AddProduct(list.product_id)" class="btn btn-primary">Add to cart
+                       </button>
+                  </td>
+                  
+                 
+                </tr>
+               
+            </tbody>
+           
+          </table>
+    
+        
+     </div>
+    </div>
+    <div class="col-md-4">
+     <h3>Shopping Cart</h3>
+     
+     
+     <div id="cart" class="cart">
+        <span *ngFor="let list of products">
+            <div *ngIf="list.added"  class="col-md-4" >{{list.product_name}}</div>
+            <div *ngIf="list.added"  class="row" >{{list.product_price}} 
+              <button class="btn btn-danger btn-xs minus" (click)="RemoveProduct(list.product_id)"><i class="glyphicon glyphicon-minus"></i></button></div>
+           
+        </span>
+        &nbsp;
+        &nbsp;
+        <div>&nbsp;&nbsp;&nbsp;Total Price : {{total | currency: 'INR' }}</div>
+     </div>
+    </div>
+   </div>
+      
+ 
+
